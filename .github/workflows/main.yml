@@ -1,1 +1,22 @@
+name: Ligar e Desligar VM
+
+on:
+  workflow_dispatch:
+
+env:
+  GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+  VM_NAME: ${{ secrets.VM_NAME }}
+  ZONE: ${{ secrets.ZONE }}
+
+jobs:
+  ligar-vm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Autenticar no GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: $GCP_SA_KEY
+
+
 
