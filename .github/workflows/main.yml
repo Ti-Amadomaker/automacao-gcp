@@ -18,12 +18,3 @@ jobs:
             --zone="${{ secrets.ZONE }}" \
             --project="${{ secrets.GCP_PROJECT_ID }}"
 
-      - name: Aguardar 2 horas
-        run: sleep $((2 * 60 * 60))
-
-      - name: Desligar a VM
-        run: |
-          gcloud compute instances stop ${{ secrets.VM_NAME}} \
-            --zone="${{ secrets.ZONE }}" \
-            --project="${{ secrets.GCP_PROJECT_ID }}"
-
