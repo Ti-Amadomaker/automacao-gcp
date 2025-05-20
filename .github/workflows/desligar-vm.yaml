@@ -1,4 +1,4 @@
-name: Desligar VM
+name: desligar-vm
 
 on:
   workflow_dispatch:
