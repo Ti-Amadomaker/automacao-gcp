@@ -2,16 +2,25 @@ name: Ligar e Desligar VM
 
 on:
   workflow_dispatch:
-
+    inputs:
+      funcao:
+        type: choice
+        options:
+          - ligar
+          - desligar
 jobs:
   ligar-vm:
+    if: github.event.inputs.funcao == 'ligar'
     runs-on: ubuntu-latest
     steps:
       - name: Autenticar no GCP
         uses: google-github-actions/auth@v1
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
-
+  desligar-vm:
+    if: github.event.inputs.funcao == 'desligar'
+    runs-on: ubuntu-latest
+    steps:
       - name: Ligar a VM
         run: |
           gcloud compute instances start ${{ secrets.VM_NAME}} \
