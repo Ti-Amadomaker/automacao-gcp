@@ -5,9 +5,12 @@ on:
     inputs:
       funcao:
         type: choice
+        required: true
+        description: "Função a ser executada"
+        default: Desligar
         options:
-          - ligar
-          - desligar
+          - Ligar
+          - Desligar
 jobs:
   ligar-vm:
     if: github.event.inputs.funcao == 'ligar'
