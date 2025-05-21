@@ -17,12 +17,22 @@ jobs:
         uses: google-github-actions/auth@v1
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - name: Ligar a VM
+        run: |
+          gcloud compute instances start ${{ secrets.VM_NAME}} \
+            --zone="${{ secrets.ZONE }}" \
+            --project="${{ secrets.GCP_PROJECT_ID }}"
+
   desligar-vm:
     if: github.event.inputs.funcao == 'desligar'
     runs-on: ubuntu-latest
     steps:
-      - name: Ligar a VM
+      - name: Autenticar no GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - name: Desligar a VM
         run: |
-          gcloud compute instances start ${{ secrets.VM_NAME}} \
+          gcloud compute instances stop ${{ secrets.VM_NAME}} \
             --zone="${{ secrets.ZONE }}" \
             --project="${{ secrets.GCP_PROJECT_ID }}"
