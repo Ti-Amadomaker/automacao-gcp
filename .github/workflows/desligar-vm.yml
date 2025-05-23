@@ -1,7 +1,7 @@
 name: Desligar VM
 on:
     schedule:
-        - cron: '20 9 * * 5'
+        - cron: '20 12 * * 5'
 jobs:
     desligar-vm:
         runs-on: ubuntu-latest

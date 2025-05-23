@@ -2,7 +2,7 @@ name: Ligar VM
 
 on:
   schedule:
-    - cron: '40 8 * * 5'
+    - cron: '40 11 * * 5'
 jobs:
   ligar-vm:
     runs-on: ubuntu-latest
